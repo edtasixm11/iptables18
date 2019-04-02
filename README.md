@@ -4,8 +4,11 @@
 Exemples  d'iptables
 
  * ip-default.sh
+
  * io-basic-01.sh 
+
     Regles INPUT.
+
     Exemples bàsics de filtrats INPUT. Jugant amb el port 80
     s'ha redefinit ports alternatius on aplicar regles de filtrat d'entrada. 
     Les clàssiques regles
