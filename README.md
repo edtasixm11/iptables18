@@ -26,8 +26,10 @@ Exemples  d'iptables
     * Port tancat a tothom excepte xarxaA (obert), però no al seu hostA (tancat)
     * Port obert a tothom excepte xarxaA (tancat), però no al seu hostA (obert)
     * Port obert per defecte, tancat a la xarxaA i obert als seus hosts hostA, hostB i hostC
+ 
+    * barrera per defcete: tancar els altrs ports
 
-* **ip-basic-02.sh**
+ * **ip-basic-02.sh**
 
     Regles OUTPUT.
 
@@ -49,7 +51,18 @@ Exemples  d'iptables
     * Denegat qualsevol tipus d'accés als hosts hostA, hostB i hostC
     * Denegat qualsevol accés extern a la xarxaA excepte si és per ssh.
 
+ * **ip-basix-03.sh**
 
+    tràfic related de tornada, tràfic related de sortida.
+
+
+ * icmp
+ * forward
+ * port/host forwarding
+ * nat
+ * dnat, snat. prerouting, postrouting
+ * DMZ
+ *  firewalld
 
 
 
