@@ -6,7 +6,7 @@ Exemples  d'iptables
  * **ip-default.sh**
 
    Accions bàsiques de configuració d'un script de iptables:
-   * Esborar, fer flush, les regles i comptadors actuals
+   * Esborar les regles (flush)  i comptadors actuals
    * Regles per defecte
    * Obrir la connectivitat pròpia al loopback i a la propia adreça ip
    * Definir si el host fa de router
