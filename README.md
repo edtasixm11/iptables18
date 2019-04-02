@@ -3,9 +3,15 @@
 
 Exemples  d'iptables
 
- * ip-default.sh
+ * **ip-default.sh**
 
- * io-basic-01.sh 
+   Accions bàsiques de configuració d'un script de iptables:
+   * Esborar, fer flush, les regles i comptadors actuals
+   * Regles per defecte
+   * Obrir la connectivitat pròpia al loopback i a la propia adreça ip
+   * Definir si el host fa de router
+
+ * **io-basic-01.sh** 
 
     Regles INPUT.
 
@@ -19,7 +25,7 @@ Exemples  d'iptables
     * Port obert a tothom excepte hostA
     * Port tancat a tothom excepte xarxaA (obert), però no al seu hostA (tancat)
     * Port obert a tothom excepte xarxaA (tancat), però no al seu hostA (obert)
-    * Port obert per defcete, tancat a la xarxaA i obert als seus hosts hosta, hostB i hostC.
+    * Port obert per defcete, tancat a la xarxaA i obert als seus hosts hosta, hostB i hostC
 
 
 
