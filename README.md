@@ -25,7 +25,7 @@ Exemples  d'iptables
     * Port obert a tothom excepte hostA
     * Port tancat a tothom excepte xarxaA (obert), però no al seu hostA (tancat)
     * Port obert a tothom excepte xarxaA (tancat), però no al seu hostA (obert)
-    * Port obert per defcete, tancat a la xarxaA i obert als seus hosts hosta, hostB i hostC
+    * Port obert per defecte, tancat a la xarxaA i obert als seus hosts hostA, hostB i hostC
 
 
 
