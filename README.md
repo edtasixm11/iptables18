@@ -38,7 +38,7 @@ Exemples  d'iptables
     * Accedir a qualsevol port/destí
     * Accedir al portA de qualsevol destí
     * Accés permès al portA a qualsevol destí excepte hostA (denegat)
-    * Accés denegat al portA a qualsevol destó  excepte hostA (permès)
+    * Accés denegat al portA a qualsevol destí  excepte hostA (permès)
     * Accés permès al portA a qualsevol destí excepte xarxaA (denegat)
     * Accés denegat al portA a qualsevol destí excepte xarxaA (permès)
     * Accés permès al portA a qualsevol destí, excepte de xarxaA (denegat)
@@ -50,7 +50,7 @@ Exemples  d'iptables
     * Denegat qualsevol tipus d'accés als hosts hostA, hostB i hostC
     * Denegat qualsevol accés extern a la xarxaA excepte si és per ssh.
 
- * **ip-basix-03.sh**
+ * **ip-basic-03.sh**
 
     tràfic related de tornada, tràfic related de sortida.
 
