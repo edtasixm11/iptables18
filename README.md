@@ -26,8 +26,7 @@ Exemples  d'iptables
     * Port tancat a tothom excepte xarxaA (obert), però no al seu hostA (tancat)
     * Port obert a tothom excepte xarxaA (tancat), però no al seu hostA (obert)
     * Port obert per defecte, tancat a la xarxaA i obert als seus hosts hostA, hostB i hostC
- 
-    * barrera per defcete: tancar els altrs ports
+     * barrera per defecte: tancar els altrs ports
 
  * **ip-basic-02.sh**
 
