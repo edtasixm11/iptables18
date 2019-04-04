@@ -11,7 +11,7 @@ Exemples  d'iptables
    * Obrir la connectivitat pròpia al loopback i a la propia adreça ip
    * Definir si el host fa de router
 
- * **ip-basic-01.sh** 
+ * **ip-01-input.sh** 
 
     Regles INPUT.
 
@@ -28,7 +28,7 @@ Exemples  d'iptables
     * Port obert per defecte, tancat a la xarxaA i obert als seus hosts hostA, hostB i hostC
      * barrera per defecte: tancar els altrs ports
 
- * **ip-basic-02.sh**
+ * **ip-02-output.sh**
 
     Regles OUTPUT.
 
@@ -50,18 +50,37 @@ Exemples  d'iptables
     * Denegat qualsevol tipus d'accés als hosts hostA, hostB i hostC
     * Denegat qualsevol accés extern a la xarxaA excepte si és per ssh.
 
- * **ip-basic-03.sh**
+ * **ip-03-ESTABLISHED.sh**
 
-    tràfic related de tornada, tràfic related de sortida.
+    Identificar tràfic de resposta (RELATED, ESTABLISHED).
+    * Permetre "navegar per internet". És a dir, accedir a qualsevol servidor
+      web extern i ecceptar només les respostes.
+    * "Ser un servidor web". permetre que accedeixin al nostre servei web i 
+      permetre únicament les respostes de sortida.
 
+ * **ip-04-icmp.sh**
 
- * icmp
+    Tràfic ICMP de ping request (8) i ping reply (0).
+    * No permetre fer pings a l'exterior.
+    * No permetre fer pings al host i26.
+    * No respondre als pings que ens facin
+    * No acceptem, rebre respostes ping
+
+ * **ip-04-nat.sh**
+    
+    Activar NAT per a dues xarxes internes. Podem crear dues xarxes (xarxaA i xarxaB) 
+    de docker i engegar dos hosts (edtasixm11/net18:nethost) a cada xarxa. 
+    * Verificar que 'abans de fer res' els hosts de docker tenen accés extern i a internet.
+    * Eliminar totes les refles de iptables aplicant ip-default.sh. Ara els hosts són
+      interns, no es fa nat, per tant no tenen accés a l'exterior (i26, 8.8.8.8, etc).
+    * Aplicar NAT per a les dues xarxes. verificar que tornen a tenir connectivitat a l'exterior.
+       
+
  * forward
  * port/host forwarding
- * nat
  * dnat, snat. prerouting, postrouting
  * DMZ
- *  firewalld
+ * firewalld
 
 
 
