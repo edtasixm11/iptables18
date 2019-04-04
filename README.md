@@ -50,7 +50,7 @@ Exemples  d'iptables
     * Denegat qualsevol tipus d'accés als hosts hostA, hostB i hostC
     * Denegat qualsevol accés extern a la xarxaA excepte si és per ssh.
 
- * **ip-03-ESTABLISHED.sh**
+ * **ip-03-established.sh**
 
     Identificar tràfic de resposta (RELATED, ESTABLISHED).
     * Permetre "navegar per internet". És a dir, accedir a qualsevol servidor
@@ -66,7 +66,7 @@ Exemples  d'iptables
     * No respondre als pings que ens facin
     * No acceptem, rebre respostes ping
 
- * **ip-04-nat.sh**
+ * **ip-05-nat.sh**
     
     Activar NAT per a dues xarxes internes. Podem crear dues xarxes (xarxaA i xarxaB) 
     de docker i engegar dos hosts (edtasixm11/net18:nethost) a cada xarxa. 
@@ -76,10 +76,35 @@ Exemples  d'iptables
     * Aplicar NAT per a les dues xarxes. verificar que tornen a tenir connectivitat a l'exterior.
        
 
- * forward
- * port/host forwarding
- * dnat, snat. prerouting, postrouting
- * DMZ
+ * **ip-06-forward.sh**
+
+    Definir regles de forwarding. Usar configuració de host/router amb dues subxarxes
+    xarxaA i xarxaB fetes amb dos hosts de docker cada una.
+    * No deixar sortir de la lan a exterior a serveis concrets
+    * No deixar sortir de la lan a exterior segons destí
+    * Un host de la lan concret no pot accedir a un servei extern (segons destí)
+    * Evitar que des de dins de la LAN es falsifiqui ip origen (spoofing
+    * Evitar que tràfic extern entri a la lan
+
+ * **ip-07-ports.sh**
+    
+    Refinir regles de port/host forwardinf.
+    * ports del router/firewall que porten a hosts de la lan
+    * port forwarding també en funció de la ip origen
+
+ * **ip-08-dmz.sh**
+
+    Configurar un host/router amb dues xarxes privades locals xarxaA i xarxaB i una
+    tercera xarxa DMZ amb servidors. Implementar-ho amb containers i xarxes docker.
+    * # de la lan no accedir al router/fireall, excepte ssh, telnet i daytime
+    * # de la lan NO es pot navegar,telnet,ssh a fora
+    * # de la lan acces al servidor web de la dmz: intranet
+    * # de exterior acces ports 3081:3085 redirigits a servers dins dmz
+    * # des de exteriors ports 3022:3025 redirigits a ssh host de la lan
+  
+
+ * AWS EC2
+
  * firewalld
 
 
