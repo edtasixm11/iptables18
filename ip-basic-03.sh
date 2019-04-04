@@ -32,9 +32,19 @@ iptables -A OUTPUT -d 192.168.0.18 -j ACCEPT
   #iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
   #iptables -A INPUT  -p tcp --sport 80 -j ACCEPT
 # filtrant tràfic només de resposta
-  iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
-  iptables -A INPUT  -p tcp --sport 80 -m tcp -m state \
-	  --state RELATED,ESTABLISHED  -j ACCEPT
+  #iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
+  #iptables -A INPUT  -p tcp --sport 80 -m tcp -m state \
+  #	  --state RELATED,ESTABLISHED  -j ACCEPT
+# oferir el servei web, permetre només respostes
+# a peticions establertes.
+  #iptables -A OUTPUT -p tcp --sport 80 -m tcp -m state \
+  #        --state RELATED,ESTABLISHED -j ACCEPT   
+  #iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+# oferim el servei web a tothom menys al i26
+  iptables -A OUTPUT -p tcp --sport 80 -m tcp -m state \
+          --state RELATED,ESTABLISHED -j ACCEPT
+  iptables -A INPUT -p tcp --dport 80 -s 192.168.2.56 -j REJECT
+  iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 
 
 
