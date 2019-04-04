@@ -96,11 +96,11 @@ Exemples  d'iptables
 
     Configurar un host/router amb dues xarxes privades locals xarxaA i xarxaB i una
     tercera xarxa DMZ amb servidors. Implementar-ho amb containers i xarxes docker.
-    * # de la lan no accedir al router/fireall, excepte ssh, telnet i daytime
-    * # de la lan NO es pot navegar,telnet,ssh a fora
-    * # de la lan acces al servidor web de la dmz: intranet
-    * # de exterior acces ports 3081:3085 redirigits a servers dins dmz
-    * # des de exteriors ports 3022:3025 redirigits a ssh host de la lan
+    * de la lan no accedir al router/fireall, excepte ssh, telnet i daytime
+    * de la lan NO es pot navegar,telnet,ssh a fora
+    * de la lan acces al servidor web de la dmz: intranet
+    * de exterior acces ports 3081:3085 redirigits a servers dins dmz
+    * des de exteriors ports 3022:3025 redirigits a ssh host de la lan
   
 
  * AWS EC2
