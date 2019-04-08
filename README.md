@@ -81,6 +81,14 @@ Exemples  d'iptables
       interns, no es fa nat, per tant no tenen accés a l'exterior (i26, 8.8.8.8, etc).
     * Aplicar NAT per a les dues xarxes. verificar que tornen a tenir connectivitat a l'exterior.
        
+```
+docker network create netA netB netZ
+docker run --rm --name hostA1 -h hostA1 --net netA --privileged -d edtasixm11/net18:nethost
+docker run --rm --name hostA2 -h hostA2 --net netA --privileged -d edtasixm11/net18:nethost
+docker run --rm --name hostB1 -h hostB1 --net netB --privileged -d edtasixm11/net18:nethost
+docker run --rm --name hostB2 -h hostB2 --net netB --privileged -d edtasixm11/net18:nethost
+```
+
 
  * **ip-06-forward.sh**
 
@@ -94,7 +102,7 @@ Exemples  d'iptables
 
  * **ip-07-ports.sh**
     
-    Refinir regles de port/host forwardinf.
+    Refinir regles de port/host forwarding.
     * ports del router/firewall que porten a hosts de la lan
     * port forwarding també en funció de la ip origen
 
