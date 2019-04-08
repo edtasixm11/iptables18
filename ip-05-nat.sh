@@ -25,7 +25,7 @@ iptables -A OUTPUT -o lo -j ACCEPT
 iptables -A INPUT -s 192.168.0.18 -j ACCEPT
 iptables -A OUTPUT -d 192.168.0.18 -j ACCEPT
 
-# Fer NAt per les xarxes internes:
+# Fer NAT per les xarxes internes:
 # - 172.19.0.0/24
 # - 172.20.0.0/24
 iptables -t nat -A POSTROUTING -s 172.19.0.0/24 -o enp6s0 -j MASQUERADE
