@@ -111,17 +111,6 @@ docker run --rm --name hostB2 -h hostB2 --net netB --privileged -d edtasixm11/ne
     Configurar un host/router amb dues xarxes privades locals xarxaA i xarxaB i una
     tercera xarxa DMZ amb servidors. Implementar-ho amb containers i xarxes docker.
 
-```
-docker network create netA netB netZ
-docker run --rm --name hostA1 -h hostA1 --net netA --privileged -d edtasixm11/net18:nethost
-docker run --rm --name hostA2 -h hostA2 --net netA --privileged -d edtasixm11/net18:nethost
-docker run --rm --name hostB1 -h hostB1 --net netB --privileged -d edtasixm11/net18:nethost
-docker run --rm --name hostB2 -h hostB2 --net netB --privileged -d edtasixm11/net18:nethost
-docker run --rm --name dmz1 -h dmz1 --net netDMZ --privileged -d edtasixm11/net18:nethost
-docker run --rm --name dmz2 -h dmz2 --net netDMZ --privileged -d edtasixm06/ldapserver:18group
-docker run --rm --name dmz3 -h dmz3 --net netDMZ --privileged -d edtasixm11/k18:kserver
-docker run --rm --name dmz4 -h dmz4 --net netDMZ --privileged -d edtasixm06/samba:18detach
-```
    Implementeu el següent firewall:
     * de la xarxaA només es pot accedir del router/fireall als serveis: ssh i  daytime(13)
     * de la xarxaA només es pot accedir a l'exterior als serveis web,  ssh  i daytime(2013)
@@ -133,6 +122,19 @@ docker run --rm --name dmz4 -h dmz4 --net netDMZ --privileged -d edtasixm06/samb
     * S'habilita el port 4000 per accedir al port ssh del router/firewal si la ip origen és 
       del host i26.
     * Els hosts de la xarxaB tenen accés a tot arreu excepte a la xarxaA.
+
+
+```
+docker network create netA netB netZ
+docker run --rm --name hostA1 -h hostA1 --net netA --privileged -d edtasixm11/net18:nethost
+docker run --rm --name hostA2 -h hostA2 --net netA --privileged -d edtasixm11/net18:nethost
+docker run --rm --name hostB1 -h hostB1 --net netB --privileged -d edtasixm11/net18:nethost
+docker run --rm --name hostB2 -h hostB2 --net netB --privileged -d edtasixm11/net18:nethost
+docker run --rm --name dmz1 -h dmz1 --net netDMZ --privileged -d edtasixm11/net18:nethost
+docker run --rm --name dmz2 -h dmz2 --net netDMZ --privileged -d edtasixm06/ldapserver:18group
+docker run --rm --name dmz3 -h dmz3 --net netDMZ --privileged -d edtasixm11/k18:kserver
+docker run --rm --name dmz4 -h dmz4 --net netDMZ --privileged -d edtasixm06/samba:18detach
+```
   
 
  * AWS EC2
