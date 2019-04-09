@@ -46,15 +46,15 @@ iptables -A INPUT -s 172.19.0.0/24 -j REJECT  # -i br-xxx
 iptables -A FORWARD  -s 172.19.0.0/24 -p tcp --dport 80 \
     	    -o enp6s0   -j ACCEPT
 iptables -A FORWARD  -d 172.19.0.0/24 -p tcp --sport 80 \
-            -o enp6s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+            -i enp6s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A FORWARD  -s 172.19.0.0/24 -p tcp --dport 22 \
             -o enp6s0   -j ACCEPT
 iptables -A FORWARD  -d 172.19.0.0/24 -p tcp --sport 22 \
-            -o enp6s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+            -i enp6s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A FORWARD  -s 172.19.0.0/24 -p tcp --dport 2013 \
             -o enp6s0   -j ACCEPT
 iptables -A FORWARD  -d 172.19.0.0/24 -p tcp --sport 22 \
-            -o enp6s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+            -i enp6s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A FORWARD  -s 172.19.0.0/24 -o enp6s0 -j REJECT 
 iptables -A FORWARD  -d 172.19.0.0/24 -i enp6s0 -j REJECT  
 
