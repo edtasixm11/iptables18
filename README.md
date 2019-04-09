@@ -130,7 +130,7 @@ docker run --rm --name dmz4 -h dmz4 --net netDMZ --privileged -d edtasixm06/samb
       3002->hostA2:2013, 3003->hostB1:2080,3004->hostB2:2007
     * S'habiliten els ports 4001 en endavant per accedir per ssh als ports ssh de: hostA1,
       hostA2, hostB1, hostB2.
-    * S'habilita el port 400 per accedir al port ssh del router/firewal si la ip origen és 
+    * S'habilita el port 4000 per accedir al port ssh del router/firewal si la ip origen és 
       del host i26.
     * Els hosts de la xarxaB tenen accés a tot arreu excepte a la xarxaA.
   
