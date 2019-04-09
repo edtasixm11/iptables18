@@ -35,10 +35,29 @@ iptables -t nat -A POSTROUTING -s 172.20.0.0/24 -o enp6s0 -j MASQUERADE
 # Exemples port forwarding
 #iptables -A FORWARD -p tcp --dport 13 -j REJECT
 #iptables -A INPUT -p tcp --dport 13 -j REJECT
-iptables -t nat -A PREROUTING -p tcp --dport 5001 -j DNAT \
-	  --to 172.19.0.2:13
-iptables -t nat -A PREROUTING -p tcp --dport 5002 -j DNAT \
-          --to 172.19.0.3:13
-iptables -t nat -A PREROUTING -p tcp --dport 5003 -j DNAT \
-          --to :13
+#iptables -t nat -A PREROUTING -p tcp --dport 5001 -j DNAT \
+#	  --to 172.19.0.2:13
+#iptables -t nat -A PREROUTING -p tcp --dport 5002 -j DNAT \
+#          --to 172.19.0.3:13
+#iptables -t nat -A PREROUTING -p tcp --dport 5003 -j DNAT \
+#          --to :13
+#iptables -t nat -A PREROUTING -p tcp --dport 6001 -j DNAT \
+#	   --to 172.19.0.2:80
+#iptables -t nat -A PREROUTING -p tcp --dport 6002 -j DNAT \
+#           --to 10.1.1.0:80
+#iptables -t nat -A PREROUTING -s 192.168.2.56 -p tcp \
+#	   --dport 6000 -j DNAT --to :22
+#iptables -t nat -A PREROUTING -s 172.19.0.0/24 -p tcp \
+#          --dport 25 -j DNAT --to 192.168.2.56:25
+#iptables -t nat -A PREROUTING -s 172.20.0.0/24 -p tcp \
+#          --dport 25 -j DNAT --to 192.168.2.56:25
+iptables -t nat -A PREROUTING -s 172.19.0.0/24 -p tcp \
+          --dport 80 -j DNAT --to 192.168.2.56:80
+iptables -t nat -A PREROUTING -s 172.20.0.0/24 -p tcp \
+          --dport 80 -j DNAT --to 10.1.1.8:80
+
+
+
+
+
 

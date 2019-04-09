@@ -110,11 +110,16 @@ docker run --rm --name hostB2 -h hostB2 --net netB --privileged -d edtasixm11/ne
 
     Configurar un host/router amb dues xarxes privades locals xarxaA i xarxaB i una
     tercera xarxa DMZ amb servidors. Implementar-ho amb containers i xarxes docker.
-    * de la lan no accedir al router/fireall, excepte ssh, telnet i daytime
-    * de la lan NO es pot navegar,telnet,ssh a fora
-    * de la lan acces al servidor web de la dmz: intranet
-    * de exterior acces ports 3081:3085 redirigits a servers dins dmz
-    * des de exteriors ports 3022:3025 redirigits a ssh host de la lan
+    * de la xarxaA només es pot accedir del router/fireall als serveis: ssh i  daytime(13)
+    * de la xarxaA només es pot accedir a l'exterior als serveis web,  ssh  i daytime(2013)
+    * de la xarxaA només es pot accedir al servei web de la DMZ
+    * redirigir els ports perquè des de l'exterior es tingui accés a: 3001->hostA1:80, 
+      3002->hostA2:2013, 3003->hostB1:2080,3004->hostB2:2007
+    * S'habiliten els ports 4001 en endavant per accedir per ssh als ports ssh de: hostA1,
+      hostA2, hostB1, hostB2.
+    * S'habilita el port 400 per accedir al port ssh del router/firewal si la ip origen és 
+      del host i26.
+    * Els hosts de la xarxaB tenen accés a tot arreu excepte a la xarxaA.
   
 
  * AWS EC2
