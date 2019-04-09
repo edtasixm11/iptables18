@@ -32,6 +32,16 @@ iptables -t nat -A POSTROUTING -s 172.19.0.0/24 -o enp6s0 -j MASQUERADE
 iptables -t nat -A POSTROUTING -s 172.20.0.0/24 -o enp6s0 -j MASQUERADE
 iptables -t nat -A POSTROUTING -s 172.21.0.0/24 -o enp6s0 -j MASQUERADE
 
+# Regles de DMZ
+# ###########################################################
+# de la xarxaA només es pot accedir del router/fireall 
+# als serveis: ssh i  daytime(13)
+iptables -A INPUT -s 172.19.0.0/24 -p tcp --dport 22 -j ACCEPT  # -i br-xxx
+iptables -A INPUT -s 172.19.0.0/24 -p tcp --dport 13 -j ACCEPT  # -i br-xxx
+iptables -A INPUT -s 172.19.0.0/24 -j REJECT  # -i br-xxx
+
+
+
 
 
 
