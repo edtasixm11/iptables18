@@ -144,10 +144,10 @@ docker run --rm --name dmz5 -h dmz5 --net netDMZ --privileged -d edtasixm11/tls1
     Implementar-ho amb containers i xarxes docker.
 
     Exercicis a implementar:
-    * des d'un host exterior accedir al servei ldap de la DMZ. Ports 389, 636.
-    * des d'un host exterior, engegar un container kclient i obtenir un tiket
+    * (1) des d'un host exterior accedir al servei ldap de la DMZ. Ports 389, 636.
+    * (2) des d'un host exterior, engegar un container kclient i obtenir un tiket
       kerberos del servidor de la DMZ. Ports: 88, 543, 749.
-    * des d'un host exterior emuntar un recurs samba del servidor de la DMZ.
+    * (3) des d'un host exterior muntar un recurs samba del servidor de la DMZ.
   
 ```
 ldapsearch -x -LLL  -h profen2i -b 'dc=edt,dc=org' dn
