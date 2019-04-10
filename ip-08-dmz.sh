@@ -35,18 +35,22 @@ iptables -t nat -A POSTROUTING -s 172.21.0.0/24 -o enp6s0 -j MASQUERADE
 # Regles de DMZ
 # ###########################################################
 
-# necessari per al funcionament de l'exercici 4.
+# necessari per al funcionament de l'exercici (4)
 iptables -A FORWARD  -d 172.19.0.0/16 -i enp6s0 -p tcp --dport 80 -j ACCEPT  #**2**
 iptables -A FORWARD  -s 172.19.0.0/16 -o enp6s0 -p tcp --sport 80 \
 	    -m state --state ESTABLISHED,RELATED -j ACCEPT  #**2**
+# necessari per al funcionament de l'exercici (5)
+iptables -A FORWARD  -d 172.19.0.0/16 -i enp6s0 -p tcp --dport 22 -j ACCEPT  #**3**
+iptables -A FORWARD  -s 172.19.0.0/16 -o enp6s0 -p tcp --sport 22 \
+            -m state --state ESTABLISHED,RELATED -j ACCEPT  #**3**
 
-# de la xarxaA només es pot accedir del router/fireall 
+# (1) de la xarxaA només es pot accedir del router/fireall 
 # als serveis: ssh i  daytime(13)
 iptables -A INPUT -s 172.19.0.0/16 -p tcp --dport 22 -j ACCEPT  # -i br-xxx
 iptables -A INPUT -s 172.19.0.0/16 -p tcp --dport 13 -j ACCEPT  # -i br-xxx
 iptables -A INPUT -s 172.19.0.0/16 -j REJECT  # -i br-xxx
 
-# de la xarxaA només es pot accedir a l'exterior als serveis 
+# (2) de la xarxaA només es pot accedir a l'exterior als serveis 
 # web, ssh i daytime(2013)
 iptables -A FORWARD  -s 172.19.0.0/16 -p tcp --dport 80 \
     	    -o enp6s0   -j ACCEPT
@@ -63,13 +67,13 @@ iptables -A FORWARD  -d 172.19.0.0/16 -p tcp --sport 2013 \
 iptables -A FORWARD  -s 172.19.0.0/16 -o enp6s0 -j REJECT  #**1**
 iptables -A FORWARD  -d 172.19.0.0/16 -i enp6s0 -j REJECT  #**1**
 
-# de la xarxaA només es pot accedir serveis que ofereix la 
+# (3) de la xarxaA només es pot accedir serveis que ofereix la 
 # DMZ al servei web
 iptables -A FORWARD -s 172.19.0.0/16 -d 172.21.0.0/16 -p tcp \
 	    --dport 80 -j ACCEPT
 iptables -A FORWARD -s 172.19.0.0/16 -d 172.21.0.0/16 -j REJECT
 
-# redirigir <F5>els ports perquè des de l'exterior es tingui 
+# (4) redirigir els ports perquè des de l'exterior es tingui 
 # accés a: 3001->hostA1:80, 3002->hostA2:2013, 3003->hostB1:2080,
 # 3004->hostB2:2007
 iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 3001 \
@@ -80,11 +84,29 @@ iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 3002 \
 	  # el tràfic està tallat a la regla **1**
 	  # caldria rectificar les regles **1** o escriure abans
 	  # una regla que permeti el tràfic exterior al port
-	  # 80 dels hosta A1 i A2 **2**
+	  # 80 dels hosta A1 i A2 **3**
 iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 3003 \
             -j DNAT --to 172.20.0.2:80
 iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 3004 \
             -j DNAT --to 172.20.0.3:80
+
+# (5) S'habiliten els ports 4001 en endavant per accedir per ssh als ports ssh de: hostA1(4001), hostA2(4002), hostB1(4003), hostB2(4004).
+iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 4001 \
+            -j DNAT --to 172.19.0.2:22
+iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 4002 \
+            -j DNAT --to 172.19.0.3:22
+            # torna a passar el mateix que l'exercici anterior,
+	    # les regles de l'exercici (2) marcades **1**
+	    # tanquen el trafic forward del port 22 de exterior
+	    # a xarxaA. Cal obrir-les abans **3**
+iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 4003 \
+            -j DNAT --to 172.20.0.2:22
+iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 4004 \
+            -j DNAT --to 172.20.0.3:22
+
+
+
+
 
 
 
