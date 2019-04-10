@@ -79,16 +79,16 @@ iptables -A FORWARD -s 172.19.0.0/16 -d 172.21.0.0/16 -j REJECT
 iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 3001 \
 	    -j DNAT --to 172.19.0.2:80
 iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 3002 \
-            -j DNAT --to 172.19.0.3:80
+            -j DNAT --to 172.19.0.3:2013
           # Aquests dos primers exercicis no funcionen perquè
 	  # el tràfic està tallat a la regla **1**
 	  # caldria rectificar les regles **1** o escriure abans
 	  # una regla que permeti el tràfic exterior al port
 	  # 80 dels hosta A1 i A2 **3**
 iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 3003 \
-            -j DNAT --to 172.20.0.2:80
+            -j DNAT --to 172.20.0.2:2080
 iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 3004 \
-            -j DNAT --to 172.20.0.3:80
+            -j DNAT --to 172.20.0.3:3013
 
 # (5) S'habiliten els ports 4001 en endavant per accedir per ssh als ports ssh de: hostA1(4001), hostA2(4002), hostB1(4003), hostB2(4004).
 iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 4001 \
@@ -111,6 +111,7 @@ iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 4000 \
 
 # (7) els hosts de la xarxaB tenen accés a tot arreu excepte
 # a la xarxaA.
+iptables -A FORWARD -s 172.20.0.0/16  -d 172.19.0.0/16 -j DROP
 iptables -A FORWARD -s 172.20.0.0/16 -j ACCEPT
 iptables -A FORWARD -d 172.20.0.0/16 -j ACCEPT
 
