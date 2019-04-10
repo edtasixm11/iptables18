@@ -61,12 +61,14 @@ iptables -A FORWARD  -d 172.19.0.0/16 -i enp6s0 -j REJECT
 # de la xarxaA només es pot accedir serveis que ofereix la 
 # DMZ al servei web
 iptables -A FORWARD -s 172.19.0.0/16 -d 172.21.0.0/16 -p tcp \
-	 --dport 80 -j ACCEPT
+	    --dport 80 -j ACCEPT
 iptables -A FORWARD -s 172.19.0.0/16 -d 172.21.0.0/16 -j REJECT
 
-# redirigir els ports perquè des de l'exterior es tingui 
+# redirigir <F5>els ports perquè des de l'exterior es tingui 
 # accés a: 3001->hostA1:80, 3002->hostA2:2013, 3003->hostB1:2080,
 # 3004->hostB2:2007
+iptables -t nat -A PREROUTING -i enp6s0 -d 172.19.0.2 -p tcp \
+	 --d
 
 
 
