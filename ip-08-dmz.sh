@@ -35,6 +35,11 @@ iptables -t nat -A POSTROUTING -s 172.21.0.0/24 -o enp6s0 -j MASQUERADE
 # Regles de DMZ
 # ###########################################################
 
+# necessari per al funcionament de l'exercici 4.
+iptables -A FORWARD  -d 172.19.0.0/16 -i enp6s0 -p tcp --dport 80 -j ACCEPT  #**2**
+iptables -A FORWARD  -s 172.19.0.0/16 -o enp6s0 -p tcp --sport 80 \
+	    -m state --state ESTABLISHED,RELATED -j ACCEPT  #**2**
+
 # de la xarxaA només es pot accedir del router/fireall 
 # als serveis: ssh i  daytime(13)
 iptables -A INPUT -s 172.19.0.0/16 -p tcp --dport 22 -j ACCEPT  # -i br-xxx
@@ -55,8 +60,8 @@ iptables -A FORWARD  -s 172.19.0.0/16 -p tcp --dport 2013 \
             -o enp6s0   -j ACCEPT
 iptables -A FORWARD  -d 172.19.0.0/16 -p tcp --sport 2013 \
             -i enp6s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
-iptables -A FORWARD  -s 172.19.0.0/16 -o enp6s0 -j REJECT 
-iptables -A FORWARD  -d 172.19.0.0/16 -i enp6s0 -j REJECT  
+iptables -A FORWARD  -s 172.19.0.0/16 -o enp6s0 -j REJECT  #**1**
+iptables -A FORWARD  -d 172.19.0.0/16 -i enp6s0 -j REJECT  #**1**
 
 # de la xarxaA només es pot accedir serveis que ofereix la 
 # DMZ al servei web
@@ -67,10 +72,19 @@ iptables -A FORWARD -s 172.19.0.0/16 -d 172.21.0.0/16 -j REJECT
 # redirigir <F5>els ports perquè des de l'exterior es tingui 
 # accés a: 3001->hostA1:80, 3002->hostA2:2013, 3003->hostB1:2080,
 # 3004->hostB2:2007
-iptables -t nat -A PREROUTING -i enp6s0 -d 172.19.0.2 -p tcp \
-	 --d
-
-
+iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 3001 \
+	    -j DNAT --to 172.19.0.2:80
+iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 3002 \
+            -j DNAT --to 172.19.0.3:80
+          # Aquests dos primers exercicis no funcionen perquè
+	  # el tràfic està tallat a la regla **1**
+	  # caldria rectificar les regles **1** o escriure abans
+	  # una regla que permeti el tràfic exterior al port
+	  # 80 dels hosta A1 i A2 **2**
+iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 3003 \
+            -j DNAT --to 172.20.0.2:80
+iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 3004 \
+            -j DNAT --to 172.20.0.3:80
 
 
 
