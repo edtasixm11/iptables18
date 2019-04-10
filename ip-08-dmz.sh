@@ -104,7 +104,10 @@ iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 4003 \
 iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 4004 \
             -j DNAT --to 172.20.0.3:22
 
-
+# (6) s'habilita el port 4000 per accedir al port ssh del 
+# router/firewal si la ip origen és del host i26.
+iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 4000 \
+            -s 192.168.2.56 -j DNAT --to :22
 
 
 
