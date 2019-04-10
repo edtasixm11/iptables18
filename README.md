@@ -160,6 +160,27 @@ kinit anna
 smbclient //profen2i/public
 ```
 
+ * **ip-10-drop.sh**
+
+    Configurar un host amb un firewall amb política drop per defecte.
+
+
+ * **practica aula**
+
+   Configurar físicament a l'aula una xarxa privada interna amb dos hosts i un
+   tercer que faci de router que connecti a la xarxa de l'aula (i a internet).
+   Posar serveis als dos hosts i configurar el firewall del router:
+   * el router fa NAT de la xarxa interna
+   * en el router el port 3001 porta a un servei del host1 i el port 3002 a un 
+     servei del host2.
+   * en el router el port 4001 porta al servei ssh del host1 i el port 4002 al
+     servei ssh del host2.
+   * en el router el port 4000 porta al servei ssh del propi router.
+   * als hosts de la xarxa privada interna se'ls permet navegar per internet,
+     però no cap altre accés a internet.
+   * no es permet que els hosts de la xarxa interna facin ping a l'exterior.
+   * el router no contesta als pings que rep, però si que pot fer ping.
+
  * AWS EC2
 
  * firewalld
