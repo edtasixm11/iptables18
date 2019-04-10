@@ -155,6 +155,9 @@ ldapsearch -x -LLL  -ZZ -h profen2i -b 'dc=edt,dc=org' dn #(falta configurar cer
 ldapsearch -x -LLL  -H  ldaps://profen2i -b 'dc=edt,dc=org' dn  #(falta configurar certificat CA en el client
 
 docker run --rm -it edtasixm11/k18:khost
+kinit anna
+
+smbclient //profen2i/public
 ```
 
  * AWS EC2
