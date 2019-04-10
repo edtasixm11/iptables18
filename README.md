@@ -151,8 +151,10 @@ docker run --rm --name dmz5 -h dmz5 --net netDMZ --privileged -d edtasixm11/tls1
   
 ```
 ldapsearch -x -LLL  -h profen2i -b 'dc=edt,dc=org' dn
-ldapsearch -x -LLL  -ZZ -h profen2i -b 'dc=edt,dc=org' dn #(falta configurar certificat CA en el client)
-ldapsearch -x -LLL  -H  ldaps://profen2i -b 'dc=edt,dc=org' dn  #(falta configurar certificat CA en el client
+ldapsearch -x -LLL  -ZZ -h profen2i -b 'dc=edt,dc=org' dn 
+    #(falta configurar certificat CA en el client)
+ldapsearch -x -LLL  -H  ldaps://profen2i -b 'dc=edt,dc=org' dn  
+    #(falta configurar certificat CA en el client
 
 docker run --rm -it edtasixm11/k18:khost
 kinit anna
@@ -165,7 +167,7 @@ smbclient //profen2i/public
     Configurar un host amb un firewall amb política drop per defecte.
 
 
- * **practica aula**
+ * **pràctica aula**
 
    Configurar físicament a l'aula una xarxa privada interna amb dos hosts i un
    tercer que faci de router que connecti a la xarxa de l'aula (i a internet).
@@ -181,9 +183,10 @@ smbclient //profen2i/public
    * no es permet que els hosts de la xarxa interna facin ping a l'exterior.
    * el router no contesta als pings que rep, però si que pot fer ping.
 
- * AWS EC2
+ * **AWS EC2**
 
- * firewalld
+
+ * **firewalld**
 
 
 
