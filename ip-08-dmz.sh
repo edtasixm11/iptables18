@@ -37,26 +37,37 @@ iptables -t nat -A POSTROUTING -s 172.21.0.0/24 -o enp6s0 -j MASQUERADE
 
 # de la xarxaA només es pot accedir del router/fireall 
 # als serveis: ssh i  daytime(13)
-iptables -A INPUT -s 172.19.0.0/24 -p tcp --dport 22 -j ACCEPT  # -i br-xxx
-iptables -A INPUT -s 172.19.0.0/24 -p tcp --dport 13 -j ACCEPT  # -i br-xxx
-iptables -A INPUT -s 172.19.0.0/24 -j REJECT  # -i br-xxx
+iptables -A INPUT -s 172.19.0.0/16 -p tcp --dport 22 -j ACCEPT  # -i br-xxx
+iptables -A INPUT -s 172.19.0.0/16 -p tcp --dport 13 -j ACCEPT  # -i br-xxx
+iptables -A INPUT -s 172.19.0.0/16 -j REJECT  # -i br-xxx
 
 # de la xarxaA només es pot accedir a l'exterior als serveis 
 # web, ssh i daytime(2013)
-iptables -A FORWARD  -s 172.19.0.0/24 -p tcp --dport 80 \
+iptables -A FORWARD  -s 172.19.0.0/16 -p tcp --dport 80 \
     	    -o enp6s0   -j ACCEPT
-iptables -A FORWARD  -d 172.19.0.0/24 -p tcp --sport 80 \
+iptables -A FORWARD  -d 172.19.0.0/16 -p tcp --sport 80 \
             -i enp6s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
-iptables -A FORWARD  -s 172.19.0.0/24 -p tcp --dport 22 \
+iptables -A FORWARD  -s 172.19.0.0/16 -p tcp --dport 22 \
             -o enp6s0   -j ACCEPT
-iptables -A FORWARD  -d 172.19.0.0/24 -p tcp --sport 22 \
+iptables -A FORWARD  -d 172.19.0.0/16 -p tcp --sport 22 \
             -i enp6s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
-iptables -A FORWARD  -s 172.19.0.0/24 -p tcp --dport 2013 \
+iptables -A FORWARD  -s 172.19.0.0/16 -p tcp --dport 2013 \
             -o enp6s0   -j ACCEPT
-iptables -A FORWARD  -d 172.19.0.0/24 -p tcp --sport 2013 \
+iptables -A FORWARD  -d 172.19.0.0/16 -p tcp --sport 2013 \
             -i enp6s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
-iptables -A FORWARD  -s 172.19.0.0/24 -o enp6s0 -j REJECT 
-iptables -A FORWARD  -d 172.19.0.0/24 -i enp6s0 -j REJECT  
+iptables -A FORWARD  -s 172.19.0.0/16 -o enp6s0 -j REJECT 
+iptables -A FORWARD  -d 172.19.0.0/16 -i enp6s0 -j REJECT  
+
+# de la xarxaA només es pot accedir serveis que ofereix la 
+# DMZ al servei web
+iptables -A FORWARD -s 172.19.0.0/16 -d 172.21.0.0/16 -p tcp \
+	 --dport 80 -j ACCEPT
+iptables -A FORWARD -s 172.19.0.0/16 -d 172.21.0.0/16 -j REJECT
+
+# redirigir els ports perquè des de l'exterior es tingui 
+# accés a: 3001->hostA1:80, 3002->hostA2:2013, 3003->hostB1:2080,
+# 3004->hostB2:2007
+
 
 
 
