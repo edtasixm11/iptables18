@@ -116,7 +116,7 @@ docker run --rm --name hostB2 -h hostB2 --net netB --privileged -d edtasixm11/ne
     * (2) de la xarxaA només es pot accedir a l'exterior als serveis web,  ssh  i daytime(2013)
     * (3) de la xarxaA només es pot accedir dels serveis que ofereix la DMZ al servei web
     * (4) redirigir els ports perquè des de l'exterior es tingui accés a: 3001->hostA1:80, 
-      3002->hostA2:2013, 3003->hostB1:2080,3004->hostB2:2007
+      3002->hostA2:2013, 3003->hostB1:2080,3004->hostB2:3013
     * (5) s'habiliten els ports 4001 en endavant per accedir per ssh als ports ssh de: 
       hostA1(4001), hostA2(4002), hostB1(4003), hostB2(4004).
     * (6) s'habilita el port 4000 per accedir al port ssh del router/firewal si la ip origen és 
