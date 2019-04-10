@@ -43,6 +43,15 @@ iptables -t nat -A PREROUTING -p tcp --dport 636 -i enp6s0 -j DNAT \
 
 # (2) des d'un host exterior, engegar un container kclient i 
 # obtenir un tiket kerberos del servidor de la DMZ.
+iptables -t nat -A PREROUTING -p tcp --dport 88 -i enp6s0 -j DNAT \
+                --to 172.21.0.4:88
+iptables -t nat -A PREROUTING -p tcp --dport 543 -i enp6s0 -j DNAT \
+                --to 172.21.0.4:543
+iptables -t nat -A PREROUTING -p tcp --dport 749 -i enp6s0 -j DNAT \
+                --to 172.21.0.6:749
+iptables -t nat -A PREROUTING -p tcp --dport 544 -i enp6s0 -j DNAT \
+                --to 172.21.0.6:544
+
 
 
 

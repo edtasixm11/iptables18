@@ -149,6 +149,13 @@ docker run --rm --name dmz5 -h dmz5 --net netDMZ --privileged -d edtasixm11/tls1
       kerberos del servidor de la DMZ. Ports: 88, 543, 749.
     * des d'un host exterior emuntar un recurs samba del servidor de la DMZ.
   
+```
+ldapsearch -x -LLL  -h profen2i -b 'dc=edt,dc=org' dn
+ldapsearch -x -LLL  -ZZ -h profen2i -b 'dc=edt,dc=org' dn #(falta configurar certificat CA en el client)
+ldapsearch -x -LLL  -H  ldaps://profen2i -b 'dc=edt,dc=org' dn  #(falta configurar certificat CA en el client
+
+docker run --rm -it edtasixm11/k18:khost
+```
 
  * AWS EC2
 
