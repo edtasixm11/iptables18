@@ -48,9 +48,17 @@ iptables -t nat -A PREROUTING -p tcp --dport 88 -i enp6s0 -j DNAT \
 iptables -t nat -A PREROUTING -p tcp --dport 543 -i enp6s0 -j DNAT \
                 --to 172.21.0.4:543
 iptables -t nat -A PREROUTING -p tcp --dport 749 -i enp6s0 -j DNAT \
-                --to 172.21.0.6:749
+                --to 172.21.0.4:749
 iptables -t nat -A PREROUTING -p tcp --dport 544 -i enp6s0 -j DNAT \
-                --to 172.21.0.6:544
+                --to 172.21.0.4:544
+
+# (3) des d'un host exterior emuntar un recurs samba del servidor 
+# de la DMZ. Ports: 
+iptables -t nat -A PREROUTING -p tcp --dport 139 -i enp6s0 -j DNAT \
+                --to 172.21.0.5:139
+iptables -t nat -A PREROUTING -p tcp --dport 445 -i enp6s0 -j DNAT \
+                --to 172.21.0.5:445
+
 
 
 
