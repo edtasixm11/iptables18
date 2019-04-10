@@ -134,6 +134,7 @@ docker run --rm --name dmz1 -h dmz1 --net netDMZ --privileged -d edtasixm11/net1
 docker run --rm --name dmz2 -h dmz2 --net netDMZ --privileged -d edtasixm06/ldapserver:18group
 docker run --rm --name dmz3 -h dmz3 --net netDMZ --privileged -d edtasixm11/k18:kserver
 docker run --rm --name dmz4 -h dmz4 --net netDMZ --privileged -d edtasixm06/samba:18detach
+docker run --rm --name dmz5 -h dmz5 --net netDMZ --privileged -d edtasixm11/tls18:ldaps
 ```
 
  * **ip-09-dmz2.sh**
@@ -143,9 +144,9 @@ docker run --rm --name dmz4 -h dmz4 --net netDMZ --privileged -d edtasixm06/samb
     Implementar-ho amb containers i xarxes docker.
 
     Exercicis a implementar:
-    * des d'un host exterior accedir al servei ldap de la DMZ.
+    * des d'un host exterior accedir al servei ldap de la DMZ. Ports 389, 636.
     * des d'un host exterior, engegar un container kclient i obtenir un tiket
-      kerberos del servidor de la DMZ.
+      kerberos del servidor de la DMZ. Ports: 88, 543, 749.
     * des d'un host exterior emuntar un recurs samba del servidor de la DMZ.
   
 
