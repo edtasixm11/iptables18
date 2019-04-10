@@ -144,8 +144,9 @@ docker run --rm --name dmz4 -h dmz4 --net netDMZ --privileged -d edtasixm06/samb
 
     Exercicis a implementar:
     * des d'un host exterior accedir al servei ldap de la DMZ.
-
-
+    * des d'un host exterior, engegar un container kclient i obtenir un tiket
+      kerberos del servidor de la DMZ.
+    * des d'un host exterior emuntar un recurs samba del servidor de la DMZ.
   
 
  * AWS EC2
