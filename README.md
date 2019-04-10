@@ -135,6 +135,17 @@ docker run --rm --name dmz2 -h dmz2 --net netDMZ --privileged -d edtasixm06/ldap
 docker run --rm --name dmz3 -h dmz3 --net netDMZ --privileged -d edtasixm11/k18:kserver
 docker run --rm --name dmz4 -h dmz4 --net netDMZ --privileged -d edtasixm06/samba:18detach
 ```
+
+ * **ip-09-dmz2.sh**
+
+    Configurar un host/router amb dues xarxes privades locals xarxaA i xarxaB i una
+    tercera xarxa DMZ amb servidors: *nethost*, *ldap*, *kerberos*, *samba*.
+    Implementar-ho amb containers i xarxes docker.
+
+    Exercicis a implementar:
+    * des d'un host exterior accedir al servei ldap de la DMZ.
+
+
   
 
  * AWS EC2

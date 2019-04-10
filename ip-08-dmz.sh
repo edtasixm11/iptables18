@@ -109,7 +109,10 @@ iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 4004 \
 iptables -t nat -A PREROUTING -i enp6s0 -p tcp --dport 4000 \
             -s 192.168.2.56 -j DNAT --to :22
 
-
+# (7) els hosts de la xarxaB tenen accés a tot arreu excepte
+# a la xarxaA.
+iptables -A FORWARD -s 172.20.0.0/16 -j ACCEPT
+iptables -A FORWARD -d 172.20.0.0/16 -j ACCEPT
 
 
 
