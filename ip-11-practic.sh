@@ -40,10 +40,19 @@ iptables -t nat -A PREROUTING -p tcp --dport 4002 -i enp5s0 -j DNAT --to 172.200
 #     però no cap altre accés a internet.
 iptables -A FORWARD -s 172.200.0.0/16 -p tcp --dport 80 -o enp5s0 -j ACCEPT
 iptables -A FORWARD -d 172.200.0.0/16 -p tcp --sport 80 -i enp5s0 -j ACCEPT
-iptables -A FORWARD -s 172.200.0.0/16 -o enp5s0 -j DROP  # talla tot el tràfic: tcp, udp icmp!!
-iptables -A FORWARD -d 172.200.0.0/16 -i enp5s0 -j DROP  # <idem>
+#iptables -A FORWARD -s 172.200.0.0/16 -o enp5s0 -j DROP  # talla tot el tràfic: tcp, udp icmp!!
+#iptables -A FORWARD -d 172.200.0.0/16 -i enp5s0 -j DROP  # <idem>
+iptables -A FORWARD -s 172.200.0.0/16 -p tcp -o enp5s0 -j DROP 
+iptables -A FORWARD -s 172.200.0.0/16 -p udp -o enp5s0 -j DROP
+iptables -A FORWARD -d 172.200.0.0/16 -p tcp -i enp5s0 -j DROP  
+iptables -A FORWARD -d 172.200.0.0/16 -p udp -i enp5s0 -j DROP  
 
-# (5)
+# (5) No es permet que els hosts de la xarxa interna facin ping a l'exterior.
+iptables -A FORWARD -s 172.200.0.0/16 -p icmp --icmp-type=8 -o enp5s0 -j DROP
+
+# (6) El router no contesta als pings que rep, però si que pot fer ping.
+iptables -A INPUT  -p icmp --icmp-type=8 -j DROP
+iptables -A OUTPUT -p icmp --icmp-type=0 -j DROP
 
 
 
