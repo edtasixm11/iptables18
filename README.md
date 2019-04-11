@@ -167,7 +167,7 @@ smbclient //profen2i/public
     Configurar un host amb un firewall amb política drop per defecte.
 
 
- * **ip-11-practica.sh**
+ * **ip-11-practic-aula.sh**
 
    *Practica a l'aula*
 
