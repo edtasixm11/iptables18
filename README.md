@@ -172,16 +172,41 @@ smbclient //profen2i/public
    Configurar físicament a l'aula una xarxa privada interna amb dos hosts i un
    tercer que faci de router que connecti a la xarxa de l'aula (i a internet).
    Posar serveis als dos hosts i configurar el firewall del router:
-   * el router fa NAT de la xarxa interna
-   * en el router el port 3001 porta a un servei del host1 i el port 3002 a un 
+   * (1) el router fa NAT de la xarxa interna
+   * (2) en el router el port 3001 porta a un servei del host1 i el port 3002 a un 
      servei del host2.
-   * en el router el port 4001 porta al servei ssh del host1 i el port 4002 al
+   * (3) en el router el port 4001 porta al servei ssh del host1 i el port 4002 al
      servei ssh del host2.
-   * en el router el port 4000 porta al servei ssh del propi router.
-   * als hosts de la xarxa privada interna se'ls permet navegar per internet,
+   * (4) en el router el port 4000 porta al servei ssh del propi router.
+   * (5) als hosts de la xarxa privada interna se'ls permet navegar per internet,
      però no cap altre accés a internet.
-   * no es permet que els hosts de la xarxa interna facin ping a l'exterior.
-   * el router no contesta als pings que rep, però si que pot fer ping.
+   * (6) no es permet que els hosts de la xarxa interna facin ping a l'exterior.
+   * (7) el router no contesta als pings que rep, però si que pot fer ping.
+
+Configuració host clientA
+```
+Iniciar el sistema en mode 1
+ip link set lo up
+ip link set enp5s0 up
+ip address add 172.20x.0.y/16 dev enp5s0
+ip route add default via 172.20x.0.1
+ip address show
+ip route show
+```
+
+Configuració del router
+```
+Engegar normalment
+ip address add 172.20x.0.1/16 dev enp5s0
+echo 1 > /proc/sys/net/ipv4/ip_forward
+```
+
+Test
+```
+ping del host al router: ok
+ping del host a 8.8.8.8, 192.168.0.10: no van, xarxa privada
+```
+
 
  * **AWS EC2**
 
