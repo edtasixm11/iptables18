@@ -36,9 +36,12 @@ iptables -t nat -A POSTROUTING -s 172.21.0.0/24 -o enp6s0 -j MASQUERADE
 # ###########################################################
 
 # necessari per al funcionament de l'exercici (4)
-iptables -A FORWARD  -d 172.19.0.0/16 -i enp6s0 -p tcp --dport 80 -j ACCEPT  #**2**
-iptables -A FORWARD  -s 172.19.0.0/16 -o enp6s0 -p tcp --sport 80 \
+iptables -A FORWARD  -d 172.19.0.2 -i enp6s0 -p tcp --dport 80 -j ACCEPT  #**2**
+iptables -A FORWARD  -s 172.19.0.2 -o enp6s0 -p tcp --sport 80 \
 	    -m state --state ESTABLISHED,RELATED -j ACCEPT  #**2**
+iptables -A FORWARD  -d 172.19.0.3 -i enp6s0 -p tcp --dport 2013 -j ACCEPT  #**2**
+iptables -A FORWARD  -s 172.19.0.3 -o enp6s0 -p tcp --sport 2013 \
+            -m state --state ESTABLISHED,RELATED -j ACCEPT  #**2**
 # necessari per al funcionament de l'exercici (5)
 iptables -A FORWARD  -d 172.19.0.0/16 -i enp6s0 -p tcp --dport 22 -j ACCEPT  #**3**
 iptables -A FORWARD  -s 172.19.0.0/16 -o enp6s0 -p tcp --sport 22 \
