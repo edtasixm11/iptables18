@@ -167,7 +167,9 @@ smbclient //profen2i/public
     Configurar un host amb un firewall amb política drop per defecte.
 
 
- * **pràctica aula**
+ * **ip-11-practica.sh**
+
+   *Practica a l'aula*
 
    Configurar físicament a l'aula una xarxa privada interna amb dos hosts i un
    tercer que faci de router que connecti a la xarxa de l'aula (i a internet).
