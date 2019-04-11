@@ -164,7 +164,23 @@ smbclient //profen2i/public
 
  * **ip-10-drop.sh**
 
-    Configurar un host amb un firewall amb política drop per defecte.
+    Configurar un host amb un firewall amb política drop per defecte
+    input i output. Configurar el propi host d'alumne, no actua com a router.
+
+    A tenir en compte en el DROP:
+    * dns 53
+    * dhclient (68)
+    * ssh (22)
+    * rpc 111, 507
+    * chronyd 123, 371
+    * cups 631
+    * xinetd 3411
+    * postgresql 5432
+    * x11forwarding 6010, 6011
+    * avahi 368
+    * alpes 462
+    * tcpnethaspsrv 475
+    * rxe 761
 
 
  * **ip-11-practic-aula.sh**
