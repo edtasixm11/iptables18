@@ -225,7 +225,7 @@ ping del host al router: ok
 ping del host a 8.8.8.8, 192.168.0.10: no van, xarxa privada
 ```
 
-#### ports a considerar
+#### Ports a considerar
 
  * DNS 533 (udp/tcp(
  * SSH 22
