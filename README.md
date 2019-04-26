@@ -225,6 +225,29 @@ ping del host al router: ok
 ping del host a 8.8.8.8, 192.168.0.10: no van, xarxa privada
 ```
 
+#### ports a considerar
+
+ * DNS 533 (udp/tcp(
+ * SSH 22
+ * RPC 111, 507
+ * Chronyd 123,371
+ * Cups 631
+ * Xinetd 3411
+ * Postgres 5432
+ * X11 forwarding 6010, 6011
+ * Avahi 368
+ * ??Alpes 462
+ * ??Tcpnethaspsrv 475
+ * rxe 761
+ * ldap 389
+ * kerberos 88, 464, 749
+ * apache  80, 443, 8080
+ * smtp 25
+ *  telnet 23,84
+ * nfs 2049
+ * serveis locals: 7, 13, 19
+ * tftp 69
+ * ftp 20, 21 
 
 #### Underconstruction
 
@@ -232,6 +255,5 @@ ping del host a 8.8.8.8, 192.168.0.10: no van, xarxa privada
 
 
  * **firewalld**
-
 
 
