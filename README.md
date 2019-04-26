@@ -227,6 +227,10 @@ ping del host a 8.8.8.8, 192.168.0.10: no van, xarxa privada
 
 #### Ports a considerar
 
+```
+$ netstat -apn | tr -s '[:blank:]' ' ' | grep -v "^unix" | sort -t' ' -k8g | uniq | less
+```
+
  * DNS 533 (udp/tcp(
  * SSH 22
  * RPC 111, 507
