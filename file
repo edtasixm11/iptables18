@@ -1,0 +1,17 @@
+file
+ip-01-input.sh
+ip-02-output.sh
+ip-03-established.sh
+ip-04-icmp.sh
+ip-05-nat.sh
+ip-06-forward.sh
+ip-07-port-forwarding.sh
+ip-08b-dmz.sh
+ip-08-dmz.sh
+ip-09-dmz2.sh
+ip-11-practic-aula.sh
+ip-default.sh
+mapa_iptables_1.txt
+mapa_iptables_2.txt
+README.md
+xinetd
